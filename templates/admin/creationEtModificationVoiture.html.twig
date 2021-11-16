@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if isModification %}
+    Modification de la voiture immatriculée : {{ voiture.immatriculation }}
+    {% else %}
+    Création d'une voiture
+    {% endif %}
+{% endblock %}
+
+{% block monTitre %}
+    {% if isModification %}
+    Modification de la voiture immatriculée : {{ voiture.immatriculation }}
+    {% else %}
+    Création d'une voiture
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+
+    <div>{{ form_row(form.immatriculation, {"attr" : {'class':'text-info'},"label":"Immatriculation : "}) }}</div>
+
+    <div>{{ form_row(form.nombrePortes, {"attr" : {'class':'text-info'}, "label":"Nombre de portes"}) }}</div>
+
+    <div>{{ form_row(form.annee, {"attr" : {'class':'text-info'}, "label":"Année : "}) }}</div>
+
+    <div>{{ form_row(form.modele, {"attr" : {'class':'text-info'}, "label":"Modèle : "}) }}</div>
+
+    {{ form_widget(form) }}
+
+    <div class="row justify-content-end">
+        <a href="{{path('admin')}}" class="btn btn-primary m-3">Retour</a>
+        <input type="submit" value="Vaider" class ="btn btn-success m-3">
+    </div>
+
+{{ form_end(form) }}
+
+{% endblock %}

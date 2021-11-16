@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VoitureRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=VoitureRepository::class)
+ * @UniqueEntity(
+ * fields={"immatriculation"},
+ * message="La plaque d'immatriculation de la voiture existe déjà"
+ * )
  */
 class Voiture
 {

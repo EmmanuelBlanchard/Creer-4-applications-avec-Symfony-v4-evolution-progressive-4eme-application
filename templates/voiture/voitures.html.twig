@@ -5,6 +5,12 @@
 {% block monTitre %}Liste des voitures{% endblock %}
 {% block body %}
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+{% endfor %}
+
 {{ form_start(form) }}
 <div class="row no-gutters align-items-center text-center">
     <div class="col m-3">
@@ -19,7 +25,9 @@
 </div>
 {{ form_end(form) }}
 
-<a href="" class="d-block btn btn-success">Ajouter</a>
+{% if admin %}
+    <a href="{{path('adminCreationVoiture')}}" class="d-block btn btn-success">Ajouter</a>
+{% endif %}
 
 <div class="row no-gutters">
     {% for voiture in voitures %}
@@ -43,8 +51,12 @@
                 </div>
                 {% if admin %}
                     <div class="row no-gutters">
-                        <a href="" class="col btn btn-warning">Modifier</a>
-                        <a href="" class="col btn btn-danger">Supprimer</a>
+                        <a href="{{path("adminModificationVoiture",{"id": voiture.id})}}" class="col btn btn-warning">Modifier</a>
+                        <form method="POST" class="col" action="{{path('adminSuppressionVoiture',{'id':voiture.id})}}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette voiture ?');">
+                            <input type="hidden" name="_method" value="SUP">
+                            <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ voiture.id)}}">
+                            <input type="submit" class="btn btn-danger w-100" value="Supprimer">
+                        </form>
                     </div>
                 {% endif %}
             </div>
