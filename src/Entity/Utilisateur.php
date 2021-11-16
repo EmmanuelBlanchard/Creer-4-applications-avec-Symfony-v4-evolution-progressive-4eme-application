@@ -108,10 +108,10 @@ class Utilisateur implements UserInterface
     public function eraseCredentials(){
 
     }
-    
-    public function getRoles(): ?string
+
+    public function getRoles(): ?array
     {
-        return $this->roles;
+        return [$this->roles];
     }
 
     public function setRoles(string $roles): self
@@ -120,4 +120,15 @@ class Utilisateur implements UserInterface
 
         return $this;
     }
+
+    // public function setRoles(?string $roles): self
+    // {
+    //     if($roles === null) {
+    //         $this->roles = "ROLE_USER";
+    //     } else {
+    //         $this->roles = $roles;
+    //     }
+
+    //     return $this;
+    // }
 }

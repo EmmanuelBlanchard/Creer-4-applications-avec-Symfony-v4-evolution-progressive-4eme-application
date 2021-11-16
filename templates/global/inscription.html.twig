@@ -8,21 +8,24 @@
 {{ form_start(form) }}
     {{ form_row(form.username, {
         "attr" : {
-            "placeholder":"Saisir votre nom d'utilisateur"
+            "placeholder" : "Saisir votre nom d'utilisateur",
+            "class" : "text-info"
         },
         "label" : "Nom d'utilisateur"
     }) }}
 
     {{ form_row(form.password, {
         "attr" : {
-            "placeholder":"Saisir votre mot de passe"
+            "placeholder" : "Saisir votre mot de passe",
+            "class" : "text-info"
         },
         "label" : "Mot de passe"
     }) }}
 
     {{ form_row(form.verificationPassword, {
         "attr" : {
-            "placeholder":"Ressaisir votre mot de passe"
+            "placeholder" : "Ressaisir votre mot de passe",
+            "class" : "text-info"
         },
         "label" : "Verification du mot de passe"
     }) }}
@@ -31,7 +34,7 @@
 
     <div class="row justify-content-end">
         <a href="{{path('accueil')}}" class="btn btn-primary m-3">Retour</a>
-        <input type="submit" value="Valider" class ="btn btn-success m-3">
+        <input type="submit" value="Valider" class ="btn btn-info m-3">
     </div>
 
 {{ form_end(form) }}
