@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error 500{% endblock %}
+
+{% block monTitre %}
+    Erreur 500 - Erreur de serveur interne !
+{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-end">
+        <a href="{{ path('accueil') }}" class="btn btn-info m-3">Retourner à la page d'accueil</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error 403{% endblock %}
+
+{% block monTitre %}
+    Erreur 403 - Accès refusé
+{% endblock %}
+{% block body %}
+    <p class="border border-dark rounded p-2 m-2 text-white bg-danger text-center m-3">
+        Vous n'avez pas l'autorisation de visiter cette page.
+    </p>
+    <div class="row justify-content-end">
+        <a href="{{ path('accueil') }}" class="btn btn-info m-3">Retourner à la page d'accueil</a>
+    </div>
+{% endblock %}

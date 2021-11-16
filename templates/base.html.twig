@@ -18,12 +18,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('accueil')}}">Accueil</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('voitures')}}">Voitures</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('admin')}}">Administration</a>
-                    </li>
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('voitures')}}">Voitures</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('admin')}}">Administration</a>
+                        </li>
+                    {% endif %}
                     {% if not app.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{path('inscription')}}">Inscription</a>
