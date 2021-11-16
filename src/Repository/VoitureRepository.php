@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Voiture;
 use Doctrine\ORM\Query;
+use App\Entity\RechercheVoiture;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -20,11 +21,19 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
-    public function findAllWithPagination(): Query 
+    public function findAllWithPagination(RechercheVoiture $rechercheVoiture): Query 
     {
-        return $this->createQueryBuilder('v')
-                    ->getQuery();
-
+        $req = $this->createQueryBuilder('v');
+        if($rechercheVoiture->getMinAnnee()) {
+            $req = $req->andWhere('v.annee >= :min')
+            ->setParameter(':min',$rechercheVoiture->getMinAnnee());
+        }
+        if($rechercheVoiture->getMaxAnnee()) {
+            $req = $req->andWhere('v.annee <= :max')
+            ->setParameter(':max',$rechercheVoiture->getMaxAnnee());
+        }
+        
+        return $req->getQuery();
     }
     
     // /**

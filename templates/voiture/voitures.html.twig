@@ -5,6 +5,20 @@
 {% block monTitre %}Liste des voitures{% endblock %}
 {% block body %}
 
+{{ form_start(form) }}
+<div class="row no-gutters align-items-center text-center">
+    <div class="col m-3">
+        {{ form_row(form.minAnnee) }}
+    </div>
+    <div class="col m-3">
+        {{ form_row(form.maxAnnee) }}
+    </div>
+    <div class="col-2">
+        <input type="submit" value="Rechercher" class="btn btn-info">
+    </div>
+</div>
+{{ form_end(form) }}
+
 <div class="row no-gutters">
     {% for voiture in voitures %}
         <div class="col-12 col-lg-6 p-1">
@@ -15,12 +29,12 @@
                     </div>
                     <div class="col">
                         <div class="card-body">
-                            <h5 class="card-title">{{voiture.immatriculation}}</h5>
+                            <h5 class="card-title">{{ voiture.immatriculation }}</h5>
                             <p class="card-text">
-                                <div>Marque : {{voiture.modele.marque.libelle}}</div>
-                                <div>Modele : {{voiture.modele.libelle}} - Prix Moyen : {{voiture.modele.prixMoyen}}</div>
-                                <div>Nombre de portes : {{voiture.nombrePortes}}</div>
-                                <div>Année : {{voiture.annee}}</div>
+                                <div>Marque : {{ voiture.modele.marque.libelle }}</div>
+                                <div>Modele : {{ voiture.modele.libelle }} - Prix Moyen : {{ voiture.modele.prixMoyen }}</div>
+                                <div>Nombre de portes : {{ voiture.nombrePortes }}</div>
+                                <div>Année : {{ voiture.annee }}</div>
                             </p>
                         </div>
                     </div>
